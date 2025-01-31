@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Like Heart Button</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.like-button {
+  background-color: #e0e0e0;
+  border: none;
+  /* padding: 10px 20px; */
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  /* border-radius: 5px; */
+  transition: background-color 0.3s;
+}
+
+.like-button .heart {
+  /* font-size: 20px; */
+  /* margin-right: 10px; */
+  transition: color 0.3s;
+}
+
+.like-button.liked {
+  /* background-color: #007bff; */
+  color: white;
+}
+
+.like-button.liked .heart {
+  color: red;
+}
+  </style>
+</head>
+<body>
+
+  <button id="likeButton" class="like-button">
+    <span id="heart" class="heart">&#x2764;</span> 
+  </button>
+
+  <script>
+    document.getElementById("likeButton").addEventListener("click", function() {
+  this.classList.toggle("liked");
+  const heart = document.getElementById("heart");
+  if (this.classList.contains("liked")) {
+    heart.textContent = "❤️"; // Red heart when liked
+    this.textContent = " ";
+    this.appendChild(heart); // Ensure heart stays after text
+  } else {
+    heart.textContent = "♡"; // Empty heart when unliked
+    this.textContent = " ";
+    this.appendChild(heart); // Ensure heart stays after text
+  }
+});
+  </script>
+</body>
+</html>
