@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
-
+from .models import *
 # Create your views here.
 
 def login(req):
@@ -30,4 +30,5 @@ def admin_home(req):
 
 # ----------------------------user-------------------
 def user_home(req):
-    return render(req,'user/user_home.html')
+    data=Images.objects.all()
+    return render(req,'user/user_home.html',{'data':data})
