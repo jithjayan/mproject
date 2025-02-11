@@ -34,6 +34,7 @@ body {
     font-weight: 600;
     padding: 8px;
     display: block;
+    
   }
   .tpdiv_itml2:hover {
     color: #007bff;
@@ -60,3 +61,6 @@ body {
       margin-right: 16px;
     }
   }
+
+  /* --------------------end--------------------- */
+  

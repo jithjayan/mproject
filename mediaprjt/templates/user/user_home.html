@@ -11,46 +11,62 @@
 </head>
 
 <style>
+        /* .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .image-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        .image-item img {
+            width: 100%;
+            height: auto;
+        }
+        .image-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+        } */
 
-.row {
-  display: -ms-flexbox; /* IE10 */
-  display: flex;
-  -ms-flex-wrap: wrap; /* IE10 */
-  flex-wrap: wrap;
-  padding: 0 4px;
-}
 
-/* Create four equal columns that sits next to each other */
-.column {
-  -ms-flex: 25%; /* IE10 */
-  flex: 25%;
-  max-width: 25%;
-  padding: 0 4px;
-}
 
-.column img {
-  margin-top: 8px;
-  vertical-align: middle;
-  width: 100%;
-}
-
-/* Responsive layout - makes a two column-layout instead of four columns */
-@media screen and (max-width: 800px) {
-  .column {
-    -ms-flex: 50%;
-    flex: 50%;
-    max-width: 50%;
-  }
-}
-
-/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .column {
-    -ms-flex: 100%;
-    flex: 100%;
-    max-width: 100%;
-  }
-}
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .image-item {
+            width: calc(23.33% - 40px);  /* Adjusts the size of the image */
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
+        .image-item img {
+            width: 100%;
+            height: auto;
+        }
+  
+        
+       @media (max-width: 768px) {
+            .image-item {
+                width: calc(50% - 10px); /* Adjust for smaller screens */
+            }
+        }
+        @media (max-width: 480px) {
+            .image-item {
+                width: 100%; /* Adjust for very small screens */
+            }
+        }
 </style>
 
 <body>
@@ -118,69 +134,48 @@
 
       <!-- -----------------------------end--------------------- -->
 
-      <div class="row"> 
-        {% for i in data %}
-        <div class="column" >
-          <img src="{{i.img.url}}" style="width:100%;" class="m1">
+ 
+
+      <!-- <div class="gallery">
+        {% for image in data %}
+        <div class="image-item">
+            <img src="{{ image.img.url }}" alt="">
 
         </div>
         {% endfor %}
-      </div>  
-
-
-<!--       
-      <div class="row"> 
-        <div class="column">
-          <img src="static/images/p.jpeg" style="width:100%">
-          <img src="static/images/pp.jpeg" style="width:100%">
-          <img src="static/images/prsh1.jpg" style="width:100%">
-          <img src="static/images/prsh2.jpg" style="width:100%">
-          <img src="static/images/prsh1.jpg" style="width:100%">
-
-        </div>
-        <div class="column">
-          <img src="static/images/prsh1.jpg" style="width:100%">
-          <img src="static/images/prsh2.jpg" style="width:100%">
-          <img src="static/images/p.jpeg" style="width:100%">
-          <img src="static/images/prsh2.jpg" style="width:100%">
-          <img src="static/images/pp.jpeg" style="width:100%">
-    
-          <img src="static/images/prsh1.jpg" style="width:100%">
-      
-          <img src="static/images/p.jpeg" style="width:100%">
-        </div>  
-        <div class="column">
-          <img src="static/images/p.jpeg" style="width:100%">
-          <img src="static/images/prsh2.jpg" style="width:100%">
-          <img src="static/images/prsh1.jpg" style="width:100%">
-          <img src="static/images/pp.jpeg" style="width:100%">
-          <img src="static/images/p.jpeg" style="width:100%">
-          <img src="static/images/prsh1.jpg" style="width:100%">
-
-          <img src="static/images/prsh2.jpg" style="width:100%">
-         
-        </div>
-        <div class="column">
-          <img src="static/images/p.jpeg" style="width:100%">
-          <img src="static/images/pp.jpeg" style="width:100%">
-          <img src="static/images/prsh1.jpg" style="width:100%">
-          <img src="static/images/prsh2.jpg" style="width:100%">
-          <img src="static/images/prsh1.jpg" style="width:100%">
-          <img src="static/images/prsh2.jpg" style="width:100%">
-          <img src="static/images/p.jpeg" style="width:100%">
-        </div>
-      </div> -->
-      
-      <script>
-const images = document.querySelectorAll('.row img');
-
-images.forEach(image => {
-  const width = image.offsetWidth;  // Get the current width of the image
-  const aspectRatio = 0.75; // Example aspect ratio (height/width), adjust as needed
-  const height = width * aspectRatio;
+    </div> -->
+   
+ 
+    <div class="image-container">
+      {% for image in data %}
+      <div class="image-item">
+          <img src="{{ image.img.url }}" alt="">
+      </div>
+      {% endfor %}
+  </div>
   
-  image.style.height = `${height}px`;
+
+
+    <script>
+     
+    //  document.querySelector('.m1');
+//      var v;
+
+// function link() {
+//   v = document.querySelectorAll('#pdiv [style*="padding: 0 4px;"]');  
+//   v.forEach(function(value) {
+//     value.style.padding = "0px";    
+//   });
+// }
+
+const gridItems = document.querySelectorAll('.image-item');
+
+gridItems.forEach(item => {
+    item.style.padding = '0';  
 });
-      </script>
+
+    </script>
+   
+
 </body>
 </html>
