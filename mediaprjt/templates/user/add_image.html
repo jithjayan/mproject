@@ -1,0 +1,85 @@
+<!-- images/templates/images/image_upload.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Image</title>
+    <!-- Add some basic styling (you can use Bootstrap or any other CSS framework if you prefer) -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"], input[type="file"], textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Upload a New Image</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" name="disp" id="disp" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="image">Choose an Image</label>
+            <input type="file" name="img" id="img" required>
+        </div>
+
+        <div class="form-group">
+            <label for="tags">Tags (Comma separated)</label>
+            <input type="text" name="tags" id="tags" required>
+        </div>
+
+        <button type="submit">Upload</button>
+    </form>
+</div>
+
+</body>
+</html>

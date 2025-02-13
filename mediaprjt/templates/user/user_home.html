@@ -29,7 +29,7 @@
           <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
               <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)"></a>
+                <a class="nav-link" href="add_image" style="color: #ffffff;">add </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="javascript:void(0)"></a>
@@ -86,7 +86,7 @@
       <div class="image-container">
         {% for image in data %}
         <div class="image-item">
-            <img src="{{ image.img.url }}" alt="{{ image.title }}">
+          <a href="../viewpic/{{image.pk}}"><img src="{{ image.img.url }}" alt="{{ image.title }}"></a>
         </div>
         {% endfor %}
     </div>
@@ -94,6 +94,8 @@
 <div class="more">
   <a href="../viewall"><button class="more_btn">View More</button></a>
 </div>
+
+
 
 <!-- Footer -->
 <footer class="footer">
