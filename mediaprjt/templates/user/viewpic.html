@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ selected_image.title }}</title>
+    <link href="https://fonts.googleapis.com/css?family=Stylish" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+</head>
+<body>
+
+    <!-- Header -->
+    <nav class="navbar navbar-expand-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand logo" href="/">PICZ B</a>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <!-- Selected Image Section -->
+        <div class="row">
+            <div class="col-md-8">
+                <img src="{{ selected_image.img.url }}" alt="{{ selected_image.title }}" class="img-fluid">
+                <h2 class="mt-3">{{ selected_image.title }}</h2>
+                <p>{{ selected_image.description }}</p>
+            </div>
+
+            <!-- User Info Section -->
+            <div class="col-md-4">
+                <h4>Uploaded by</h4>
+                <div class="user-info">
+                    <img src="{{ uploader.profile_picture.url }}" alt="{{ uploader.username }}" class="img-thumbnail" style="width: 100px; height: 100px;">
+                    <p><strong>{{ uploader.username }}</strong></p>
+                    <p><em>{{ uploader.email }}</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Images Section -->
+        <div class="mt-5">
+            <h4>Related Photos</h4>
+            <div class="row">
+                {% for image in related_images %}
+                <div class="col-md-3">
+                    <div class="related-image">
+                        <a href="{% url 'show_image' image.id %}">
+                            <img src="{{ image.img.url }}" alt="{{ image.title }}" class="img-fluid">
+                        </a>
+                        <p class="text-center">{{ image.title }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white text-center py-4">
+        <p>&copy; 2025 PICZ B. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

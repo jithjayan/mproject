@@ -30,5 +30,10 @@ def admin_home(req):
 
 # ----------------------------user-------------------
 def user_home(req):
-    data=Images.objects.all()
+    data=Images.objects.all()[::-1]
     return render(req,'user/user_home.html',{'data':data})
+
+def viewall(req):
+    data=Images.objects.all()
+    return render(req,'user/viewall.html',{'data':data})
+
