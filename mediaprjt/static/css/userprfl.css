@@ -1,0 +1,107 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fc;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 8px;
+}
+.prfl{
+    border: 2px solid black;
+    padding: 10px;
+}
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.profile-header img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.profile-header .info {
+    flex: 1;
+}
+
+.profile-header .info h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.profile-header .info p {
+    font-size: 16px;
+    color: #666;
+}
+
+.profile-actions {
+    display: flex;
+    gap: 20px;
+}
+
+.profile-actions a {
+    text-decoration: none;
+    color: #fff;
+    background-color: #4CAF50;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.profile-actions a:hover {
+    background-color: #45a049;
+}
+
+.profile-details {
+    margin-top: 30px;
+}
+
+.profile-details h2 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.profile-details dl {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.profile-details dt {
+    font-weight: bold;
+    color: #333;
+    width: 120px;
+}
+
+.profile-details dd {
+    color: #555;
+    margin: 0;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 14px;
+    color: #888;
+}
+
+/* ---------------end----------------- */
+
+.yr_prfl{
+ justify-content: space-between;
+}

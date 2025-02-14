@@ -58,7 +58,7 @@
         </div> -->
 
         <div class="related-images">
-            {% for image in data3 %}
+            {% for image in images %}
                 <div class="image-item">
                     <img src="{{ image.img.url }}" alt="{{ image.title }}">
                     <p>{{ image.title }}</p>
@@ -68,6 +68,14 @@
             {% endfor %}
         </div>
     </div>
+
+    <!-- {% for image in images %}
+    <div>
+        <h2>{{ image.title }}</h2>
+        <img src="{{ image.img.url }}" alt="{{ image.title }}">
+        <p>{{ image.disp }}</p>
+    </div>
+{% endfor %} -->
 
     <!-- Footer -->
     <footer class="footer bg-dark text-white text-center py-4">
