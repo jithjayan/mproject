@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link href='https://fonts.googleapis.com/css?family=Stylish' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+ <link rel="stylesheet" href="{% static 'css/style.css'%}">
+ <link rel="stylesheet" href="{% static 'css/userprfl.css'%}">
+
+
+ <style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+}
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.image-display {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+.description {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+.actions {
+    display: flex;
+    gap: 20px;
+}
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+}
+.back-btn {
+    background-color: #4CAF50;
+}
+.delete-btn {
+    background-color: #F44336;
+}
+footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #888;
+}
+ </style>
+</head>
+
+<style>
+
+</style>
+
+<body>
+  <nav class="navbar navbar-expand-sm" id="nbr">
+    <div class="container-fluid">
+      <a class="navbar-brand logo" href="javascript:void(0)" >PICZ B</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mynavbar">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="" style="color: #ffffff;"> </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0)"></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0)"></a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="text" placeholder="Search">
+          <button class="btn btn-dark" type="button">Search</button>
+            
+        </form>
+        <div class="prfl_logo"> <a href="../login"><i class="fa-solid fa-user fa-xl" style="color: #ffffff;"></i></a></div>
+      </div>
+    </div>
+  </nav>
+  <!-- ----------------------------navend------------------ -->
+    
+
+    <nav class="navbar navbar-expand-sm" id="nbr">
+        <div class="container-fluid">
+          <a class="navbar-brand logo" href="javascript:void(0)" >PICZ B</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="add_image" style="color: #ffffff;">add </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)"></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)"></a>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="text" placeholder="Search">
+              <button class="btn btn-dark" type="button">Search</button>
+                
+            </form>
+            <div class="prfl_logo"> <a href="../login"><i class="fa-solid fa-user fa-xl" style="color: #ffffff;"></i></a></div>
+          </div>
+        </div>
+      </nav>
+      <!-- ----------------------------navend------------------ -->
+
+      <div class="container">
+        <header>
+            <h1>View Image</h1>
+        </header>
+
+        <div class="image-wrapper">
+            <div class="image-details">
+                <!-- Image Display -->
+                <img src="{{ image.img.url }}" alt="{{ image.title }}" class="image-display">
+                
+                <!-- Image Title -->
+                <h2>{{ image.title }}</h2>
+                
+                <!-- Image Description (Optional) -->
+                <p class="description">{{ image.description }}</p>
+
+                <!-- Action Buttons (Optional) -->
+                <div class="actions">
+                    <a href="{% url 'all_uplds' %}" class="btn back-btn">Back to Gallery</a>
+                    <a href="{% url 'delete_img' image.pk %}" class="btn delete-btn" onclick="return confirm('Are you sure you want to delete this image?')">Delete Image</a>
+                </div>
+            </div>
+        </div>
+
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <!-- Logo & About Section -->
+            <div class="col-lg-4 col-md-6">
+                <h4 class="footer-heading">About PICZ B</h4>
+                <p class="footer-text">PICZ B is a platform for discovering and sharing high-quality images and photography. Explore various categories from nature, architecture, fashion, and more!</p>
+            </div>
+  
+            <!-- Quick Links -->
+            <div class="col-lg-4 col-md-6">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/terms">Terms & Conditions</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+  
+            <!-- Social Media Links -->
+            <div class="col-lg-4 col-md-6">
+                <h4 class="footer-heading">Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+  
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; 2025 PICZ B. All Rights Reserved.</p>
+        </div>
+    </div>
+  </footer>
+  
+  </body>
+  </html>

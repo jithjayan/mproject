@@ -10,32 +10,73 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
+<style>
+.dwld_btn{
+  text-decoration: none;
+  border: 2px solid black;
+  font: size 4em;;
+  padding: 10px;
+  background-color:  rgba(97, 226, 209, 0.74);
+  color: black;
+  margin-left: 85%;
+ }
+ .dwld_btn:hover{
+    background-color: rgb(223, 223, 223);
+    color: black;
+ }
+</style>
 </head>
 <body>
-
-    <!-- Header -->
-    <nav class="navbar navbar-expand-sm">
+    <nav class="navbar navbar-expand-sm" id="nbr">
         <div class="container-fluid">
-            <a class="navbar-brand logo" href="/">PICZ B</a>
+          <a class="navbar-brand logo" href="javascript:void(0)" >PICZ B</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="" style="color: #ffffff;"> </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)"></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)"></a>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="text" placeholder="Search">
+              <button class="btn btn-dark" type="button">Search</button>
+                
+            </form>
+            <div class="prfl_logo"> <a href="../login"><i class="fa-solid fa-user fa-xl" style="color: #ffffff;"></i></a></div>
+          </div>
         </div>
-    </nav>
+      </nav>
+      <!-- ----------------------------navend------------------ -->
+
+ 
 
     <div class="container mt-5">
         <!-- Selected Image Section -->
         <div class="row">
             <div class="col-md-8">
                 <img src="{{ data.img.url }}" alt="{{ data.title }}" class="img-fluid">
-                <h2 class="mt-3">{{ selected_image.title }}</h2>
-                <p>{{ selected_image.description }}</p>
+                <h2 class="mt-3">{{ data.title }}</h2>
+
+                <a href="../download/{{data.pk}}" class="dwld_btn">Download     <i class="fa-solid fa-download  fa-xl"></i></a>
+
             </div>
 
             <!-- User Info Section -->
             <div class="col-md-4">
                 <h4>Uploaded by</h4>
                 <div class="user-info">
-                    <img src="{{ uploader.profile_picture.url }}" alt="{{ uploader.username }}" class="img-thumbnail" style="width: 100px; height: 100px;">
-                    <p><strong>{{ uploader.username }}</strong></p>
-                    <p><em>{{ uploader.email }}</em></p>
+                    
+                    <img src="{{ data3.profile_picture.url }}" alt="{{ uploader.username }}" class="img-thumbnail" style="width: 100px; height: 100px;">
+                    <p><strong>{{ data2.first_name }}</strong></p>
+                    <p><em>{{ data2.username }}</em></p>
                 </div>
             </div>
         </div>
@@ -43,11 +84,11 @@
         <!-- Related Images Section -->
         <div class="mt-5">
             <h4>Related Photos</h4>
-            <!-- <div class="row">
-                {% for image in related_images %}
+            <div class="row">
+                {% for image in images %}
                 <div class="col-md-3">
                     <div class="related-image">
-                        <a href="{% url 'show_image' image.id %}">
+                        <a href="">
                             <img src="{{ image.img.url }}" alt="{{ image.title }}" class="img-fluid">
                         </a>
                         <p class="text-center">{{ image.title }}</p>
@@ -55,8 +96,9 @@
                 </div>
                 {% endfor %}
             </div>
-        </div> -->
-
+            
+        </div>
+<!-- 
         <div class="related-images">
             {% for image in images %}
                 <div class="image-item">
@@ -67,7 +109,7 @@
                 <p>No related images found.</p>
             {% endfor %}
         </div>
-    </div>
+    </div> -->
 
     <!-- {% for image in images %}
     <div>
@@ -81,6 +123,9 @@
     <footer class="footer bg-dark text-white text-center py-4">
         <p>&copy; 2025 PICZ B. All Rights Reserved.</p>
     </footer>
+
+
+
 
 </body>
 </html>

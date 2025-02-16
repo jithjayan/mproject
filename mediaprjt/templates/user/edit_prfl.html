@@ -85,7 +85,34 @@
     </style>
 </head>
 <body>
-
+    <nav class="navbar navbar-expand-sm" id="nbr">
+        <div class="container-fluid">
+          <a class="navbar-brand logo" href="javascript:void(0)" >PICZ B</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="" style="color: #ffffff;"> </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)"></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)"></a>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="text" placeholder="Search">
+              <button class="btn btn-dark" type="button">Search</button>
+                
+            </form>
+            <div class="prfl_logo"> <a href="../login"><i class="fa-solid fa-user fa-xl" style="color: #ffffff;"></i></a></div>
+          </div>
+        </div>
+      </nav>
+      <!-- ----------------------------navend------------------ -->
 <div class="container">
     <h1>Edit Profile</h1>
 
@@ -94,36 +121,29 @@
         
         <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" name="username" id="username" value="{{ user.username }}" required>
-        </div>
-
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" value="{{ user.email }}" required>
+            <input type="text" name="first_name" id="first_name" value="{{ user.first_name }}" required>
         </div>
 
         <div class="form-group">
             <label for="bio">Bio</label>
-            <textarea name="bio" id="bio">{{ user.profile.bio }}</textarea>
+            <textarea name="bio" id="bio">{{ profile.bio }}</textarea>
         </div>
 
         <div class="form-group">
             <label for="profile_picture">Profile Picture</label>
-            <input type="file" name="profile_picture" id="profile_picture">
-            {% if user.profile.profile_picture %}
-                <p>Current profile picture: <img src="{{ user.profile.profile_picture.url }}" alt="Profile Picture" width="100"></p>
-            {% endif %}
+            <input type="file" name="profile_picture" id="profile_picture" value="">
+      
         </div>
-
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="password">New Password (Leave empty to keep current password)</label>
             <input type="password" name="password" id="password">
-        </div>
+        </div> -->
 
         <div class="button-group">
             <button type="submit">Save Changes</button>
         </div>
     </form>
+
 </div>
 
 <div class="footer">

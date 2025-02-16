@@ -22,14 +22,14 @@
 
     <nav class="navbar navbar-expand-sm" id="nbr">
         <div class="container-fluid">
-          <a class="navbar-brand logo" href="javascript:void(0)" >PICZ B</a>
+          <a class="navbar-brand logo" href="../user_home" >PICZ B</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
               <li class="nav-item">
-                <a class="nav-link" href="add_image" style="color: #ffffff;">add </a>
+                <a class="nav-link" href="" style="color: #ffffff;"> </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="javascript:void(0)"></a>
@@ -38,10 +38,9 @@
                 <a class="nav-link" href="javascript:void(0)"></a>
               </li>
             </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="text" placeholder="Search">
+            <form class="d-flex" method="GET" action="../search">
+              <input class="form-control me-2" type="text" placeholder="Search" name="query">
               <button class="btn btn-dark" type="button">Search</button>
-                
             </form>
             <div class="prfl_logo"> <a href="../login"><i class="fa-solid fa-user fa-xl" style="color: #ffffff;"></i></a></div>
           </div>
@@ -62,7 +61,7 @@
             <!-- <li class="tpdiv_itml1"><a aria-current="page" class="tpdiv_itml2 pzj2X" href="/">Photos</a></li>
             <li class="tpdiv_itml1"><a class="tpdiv_itml2" href="/illustrations">Illustrations</a></li>
             <li class="tpdiv_itml1"><a class="tpdiv_itml2" href="/plus/new">Unsplash+</a></li> -->
-            <li><a class="tpdiv_itml2" href="/t/wallpapers">Wallpapers</a></li>
+            <li><a class="tpdiv_itml2" href="../images_by_category/{{category.pk}}">Wallpapers</a></li>
             <li><a class="tpdiv_itml2" href="/t/nature">Nature</a></li>
             <li><a class="tpdiv_itml2" href="/t/3d-renders">3D Renders</a></li>
             <li><a class="tpdiv_itml2" href="/t/textures-patterns">Textures</a></li>

@@ -86,7 +86,7 @@
       <div class="image-container">
         {% for image in data %}
         <div class="image-item">
-            <img src="{{ image.img.url }}" alt="{{ image.title }}">
+          <a href="../viewpic/{{image.pk}}"> <img src="{{ image.img.url }}" alt="{{ image.title }}"></a>
         </div>
         {% endfor %}
     </div>

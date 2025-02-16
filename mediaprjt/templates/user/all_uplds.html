@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link href='https://fonts.googleapis.com/css?family=Stylish' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+ <link rel="stylesheet" href="{% static 'css/style.css'%}">
+ <link rel="stylesheet" href="{% static 'css/userprfl.css'%}">
+
+</head>
+
+<style>
+
+</style>
+
+<body>
+  <nav class="navbar navbar-expand-sm" id="nbr">
+    <div class="container-fluid">
+      <a class="navbar-brand logo" href="../home" >PICZ B</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mynavbar">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="" style="color: #ffffff;"> </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0)"></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0)"></a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="text" placeholder="Search">
+          <button class="btn btn-dark" type="button">Search</button>
+            
+        </form>
+        <div class="prfl_logo"> <a href="../login"><i class="fa-solid fa-user fa-xl" style="color: #ffffff;"></i></a></div>
+      </div>
+    </div>
+  </nav>
+
+      <!-- ----------------------------navend------------------ -->
+
+
+      <!-- -----------------------------end--------------------- -->
+
+      <div class="image-container">
+        {% for image in uploads %}
+        <div class="image-item">
+            <a href="../user_pic/{{ image.pk }}"><img src="{{ image.Images.img.url }}" alt="{{ image.title }}"></a>
+            
+            <a class="rmv_btn" href="../delete_img/{{image.pk}}"> Remove </a>
+        
+        </div>  
+        {% endfor %}
+    </div>  
+    
+   
+
+
+
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+      <div class="row">
+          <!-- Logo & About Section -->
+          <div class="col-lg-4 col-md-6">
+              <h4 class="footer-heading">About PICZ B</h4>
+              <p class="footer-text">PICZ B is a platform for discovering and sharing high-quality images and photography. Explore various categories from nature, architecture, fashion, and more!</p>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="col-lg-4 col-md-6">
+              <h4 class="footer-heading">Quick Links</h4>
+              <ul class="footer-links">
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/about">About Us</a></li>
+                  <li><a href="/contact">Contact</a></li>
+                  <li><a href="/terms">Terms & Conditions</a></li>
+                  <li><a href="/privacy">Privacy Policy</a></li>
+              </ul>
+          </div>
+
+          <!-- Social Media Links -->
+          <div class="col-lg-4 col-md-6">
+              <h4 class="footer-heading">Follow Us</h4>
+              <div class="social-icons">
+                  <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                  <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                  <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                  <a href="#" class="social-icon"><i class="fab fa-pinterest"></i></a>
+              </div>
+          </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="footer-bottom">
+          <p>&copy; 2025 PICZ B. All Rights Reserved.</p>
+      </div>
+  </div>
+</footer>
+
+</body>
+</html>

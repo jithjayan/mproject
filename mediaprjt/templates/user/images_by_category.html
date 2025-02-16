@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Images in Category: {{ category.name }}</title>
+</head>
+<body>
+    <h1>Images in Category: {{ category.name }}</h1>
+    
+    {% if images %}
+        <div class="image-gallery">
+            {% for image in images %}
+                <div class="image-card">
+                    <h3>{{ image.title }}</h3>
+                    <img src="{{ image.img.url }}" alt="{{ image.title }}" style="max-width: 300px; max-height: 300px;">
+                    <p>{{ image.disp }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No images found in this category.</p>
+    {% endif %}
+</body>
+</html>

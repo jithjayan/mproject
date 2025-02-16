@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -10,6 +11,7 @@ class Category(models.Model):
 
 
 class Images(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
     img=models.FileField()
     title=models.TextField()
     tags=models.TextField()
@@ -21,5 +23,17 @@ class Images(models.Model):
     def __str__(self):
         return self.title
     
+class Your_uplds(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    Images=models.ForeignKey(Images,on_delete=models.CASCADE)
 
-    
+
+class Profile(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    bio=models.TextField()
+    profile_picture=models.FileField()
+
+
+
+
+
