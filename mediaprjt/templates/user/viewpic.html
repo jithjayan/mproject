@@ -29,7 +29,7 @@
 <body>
     <nav class="navbar navbar-expand-sm" id="nbr">
         <div class="container-fluid">
-          <a class="navbar-brand logo" href="javascript:void(0)" >PICZ B</a>
+          <a class="navbar-brand logo" href="../home" >PICZ B</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -66,6 +66,11 @@
                 <h2 class="mt-3">{{ data.title }}</h2>
 
                 <a href="../download/{{data.pk}}" class="dwld_btn">Download     <i class="fa-solid fa-download  fa-xl"></i></a>
+                <!-- {% if i.pk in saved_images%}
+                <li><a class="dropdown-item" href="unsave/{{i.pk}}">Unsave</a></li>
+                {% else %}
+                <li><a class="dropdown-item" href="save/{{i.pk}}">Save</a></li>
+                {% endif %} -->
 
             </div>
 

@@ -5,6 +5,7 @@ admin.site.register(Images),
 admin.site.register(Category),
 admin.site.register(Your_uplds),
 admin.site.register(Profile),
+admin.site.register(Saved),
 
 
 

@@ -364,3 +364,24 @@ def search(req):
     else:
         images = [] 
     return render(req, 'user/search.html', {'images': images})
+
+
+# def save(req,pid):
+#     if 'user' in req.session:
+#         user=User.objects.get(username=req.session['user'])
+#         image=Images.objects.get(pk=pid)
+#         data=Saved.objects.create(image=image,user=user)
+#         data.save()
+#         return redirect(req.META.get('HTTP_REFERER'))
+#     else:
+#         return redirect(u_login) 
+    
+# def unsave(req,pid):
+#     if 'user' in req.session:
+#         user=User.objects.get(username=req.session['user'])
+#         image=Images.objects.get(pk=pid)
+#         data=Saved.objects.get(image=image,user=user)
+#         data.delete()
+#         return redirect(req.META.get('HTTP_REFERER'))
+#     else:
+#         return redirect(u_login) 

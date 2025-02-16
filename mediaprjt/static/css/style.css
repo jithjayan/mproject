@@ -80,71 +80,56 @@ body {
 
   /* --------------------end--------------------- */
   
-/* Global Styles */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f7f7f7;
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
 }
 
-/* Main container for images */
+/* Main container */
 .image-container {
-  column-count: 4; /* Number of columns in the grid */
-  column-gap: 15px; /* Gap between columns */
-  padding: 20px;
-  max-width: 1200px; /* Restrict the width of the grid */
-  margin: 0 auto; /* Center the container */
+    column-count: 4; /* Number of columns in the grid */
+    column-gap: 15px; /* Gap between columns */
+    padding: 20px;
 }
 
-/* Styling for each image item */
 .image-item {
-  break-inside: avoid; /* Avoid breaking images inside columns */
-  margin-bottom: 15px;
-  background-color: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    break-inside: avoid; /* Avoid breaking images inside columns */
+    margin-bottom: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.781);
 }
 
-/* Image styling */
 .image-item img {
-  width: 100%;
-  height: auto;
-  border-bottom: 2px solid #f0f0f0; /* Border between image and caption */
-  transition: transform 0.3s ease;
+    width: 100%;
+    height: auto;
 }
-
-/* Hover effect for image items */
-.image-item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
-}
-
-/* Hover effect for images */
-.image-item img:hover {
-  transform: scale(1.1); /* Zoom-in effect on hover */
+.image-item img:hover{
+    transform: scale(1.1);
+    transition: transform 0.5s;
 }
 
 
 /* Responsive layout */
 @media (max-width: 1200px) {
-  .image-container {
-      column-count: 3;
-  }
+    .image-container {
+        column-count: 3;
+    }
 }
 
 @media (max-width: 900px) {
-  .image-container {
-      column-count: 2;
-  }
+    .image-container {
+        column-count: 2;
+    }
 }
 
 @media (max-width: 600px) {
-  .image-container {
-      column-count: 1;
-  }
+    .image-container {
+        column-count: 1;
+    }
 }
 
 /* --------------view more------------ */

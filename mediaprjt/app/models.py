@@ -34,6 +34,8 @@ class Profile(models.Model):
     profile_picture=models.FileField()
 
 
-
+class Saved(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    image=models.ForeignKey(Images, on_delete=models.CASCADE)
 
 
