@@ -18,11 +18,26 @@
   padding: 10px;
   background-color:  rgba(97, 226, 209, 0.74);
   color: black;
-  margin-left: 85%;
+  margin-left: 75%;
+  margin-right: 30%;
  }
  .dwld_btn:hover{
     background-color: rgb(223, 223, 223);
     color: black;
+ }
+ .usr a{
+     text-decoration: none;
+     color: black;
+ }
+ .item2{
+     text-decoration: none;
+     color: black;
+     font-size: 40px;
+ }
+ .item1{
+     text-decoration: none;
+     color: black;
+     font-size: 40px;
  }
 </style>
 </head>
@@ -65,25 +80,26 @@
                 <img src="{{ data.img.url }}" alt="{{ data.title }}" class="img-fluid">
                 <h2 class="mt-3">{{ data.title }}</h2>
 
-                <a href="../download/{{data.pk}}" class="dwld_btn">Download     <i class="fa-solid fa-download  fa-xl"></i></a>
-                <!-- {% if i.pk in saved_images%}
-                <li><a class="dropdown-item" href="unsave/{{i.pk}}">Unsave</a></li>
+                <a href="../download/{{data.pk}}" class="dwld_btn">Download     </a>
+                {% if data.pk in saved_images%}
+                <a class="item1" href="../unsave/{{data.pk}}"><i class="fa-solid fa-bookmark"></i></a>
                 {% else %}
-                <li><a class="dropdown-item" href="save/{{i.pk}}">Save</a></li>
-                {% endif %} -->
+                <a class="item2" href="../save/{{data.pk}}"><i class="fa-regular fa-bookmark"></i></a>
+                {% endif %}
 
             </div>
 
             <!-- User Info Section -->
-            <div class="col-md-4">
+            <div class="col-md-4 usr">
                 <h4>Uploaded by</h4>
+                <a href="../view_upldr/{{data2.pk}}">
                 <div class="user-info">
                     
                     <img src="{{ data3.profile_picture.url }}" alt="{{ uploader.username }}" class="img-thumbnail" style="width: 100px; height: 100px;">
                     <p><strong>{{ data2.first_name }}</strong></p>
-                    <p><em>{{ data2.username }}</em></p>
+                    <p><em>{{ data3.bio}}</em></p>
                 </div>
-            </div>
+            </div></a>
         </div>
 
         <!-- Related Images Section -->

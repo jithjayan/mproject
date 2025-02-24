@@ -36,6 +36,7 @@ urlpatterns=[
     path('images_by_category/<pid>',views.images_by_category),
     path('search',views.search),
     path('user_pic/<pid>',views.user_pic),
-    
-
+    path('view_upldr/<pid>',views.view_upldr),
+    path('save/<pid>',views.save),
+    path('unsave/<pid>',views.unsave),
 ]

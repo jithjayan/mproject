@@ -3,6 +3,8 @@ from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponse
 from django.http import HttpResponseForbidden
 from .models import *
+from django.core.exceptions import ObjectDoesNotExist
+
 import os
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -188,6 +190,7 @@ def admin_viewpic(req,pid):
     data2=data.user
     data3=Profile.objects.filter(user=data.user).first()
     return render(req,'admin/admin_viewpic.html',{'data':data,'data2':data2,'data3':data3})
+
 def admin_delete_img(req,pid):
     if 'admin' in req.session:
         image=Images.objects.get(pk=pid)
@@ -199,14 +202,36 @@ def admin_delete_img(req,pid):
         return redirect(admin_home)
     else:
         return redirect(u_login)
-    
+
+
+def delete_img(req, pid):
+    if 'user' in req.session:
+        try:
+            # Get the Your_uplds object by passing the pid, which is the ID of the Your_uplds object
+            your_upld = Your_uplds.objects.get(pk=pid)
+            # Access the associated Image through the 'Images' ForeignKey
+            image = your_upld.Images
+            url = image.img.url
+            og_path = url.split('/')[-1]
+            os.remove('media/' + og_path)
+            image.delete()
+            print(og_path)
+        except ObjectDoesNotExist:
+            print(f"Your_uplds or Image with pk={pid} does not exist.")
+            return redirect(all_uplds)  # Replace 'error_page' with the actual error handling page.
+        
+        return redirect(all_uplds)  # Replace 'all_uplds' with the actual page showing user uploads
+    else:
+        return redirect(u_login)  # Redirect to login if the user is not logged in
+
+
 def a_logout(req):
     req.session.flush()
     logout(req)
     return redirect(user_home) 
 # ----------------------------user-------------------
 def user_home(req):
-    data=Images.objects.all()[::-1]
+    data=Images.objects.all()[:3]
 
     return render(req,'user/user_home.html',{'data':data})
 
@@ -249,7 +274,9 @@ def viewpic(req,pid):
     data3=Profile.objects.filter(user=data.user).first()
     category_name = data.tag  # This could be dynamic, like from request.GET or URL parameters
     images = Images.objects.filter(tag__name=category_name).exclude(pk=pid)
-    return render(req,'user/viewpic.html',{'data':data,'images': images,'data2':data2,'data3':data3})
+    save=Saved.objects.all()
+    saved_images = [save.image.pk for save in save if save.user.pk == data2.pk] 
+    return render(req,'user/viewpic.html',{'data':data,'images': images,'data2':data2,'data3':data3,'saved_images': saved_images})
 
 
 def images_by_category(req,pid):
@@ -282,25 +309,12 @@ def add_image(req):
 
             Your_uplds.objects.create(user=user, Images=image)
 
-            return redirect(user_home)  
+            return redirect(user_prfl)  
 
         return render(req, 'user/add_image.html')
     else:
         return redirect(u_login)
 
-
-
-def delete_img(req,pid):
-    if 'user' in req.session:
-        image=Images.objects.get(pk=pid)
-        url=image.img.url
-        og_path=url.split('/')[-1]
-        os.remove('media/'+og_path)
-        image.delete()
-        print(og_path)
-        return redirect(all_uplds)
-    else:
-        return redirect(u_login)
 
 def all_uplds(req):
     if 'user' in req.session:
@@ -366,22 +380,33 @@ def search(req):
     return render(req, 'user/search.html', {'images': images})
 
 
-# def save(req,pid):
-#     if 'user' in req.session:
-#         user=User.objects.get(username=req.session['user'])
-#         image=Images.objects.get(pk=pid)
-#         data=Saved.objects.create(image=image,user=user)
-#         data.save()
-#         return redirect(req.META.get('HTTP_REFERER'))
-#     else:
-#         return redirect(u_login) 
+def save(req,pid):
+    if 'user' in req.session:
+        user=User.objects.get(username=req.session['user'])
+        image=Images.objects.get(pk=pid)
+        data=Saved.objects.create(image=image,user=user)
+        data.save()
+        return redirect(req.META.get('HTTP_REFERER'))
+    else:
+        return redirect(u_login) 
     
-# def unsave(req,pid):
-#     if 'user' in req.session:
-#         user=User.objects.get(username=req.session['user'])
-#         image=Images.objects.get(pk=pid)
-#         data=Saved.objects.get(image=image,user=user)
-#         data.delete()
-#         return redirect(req.META.get('HTTP_REFERER'))
-#     else:
-#         return redirect(u_login) 
+def unsave(req,pid):
+    if 'user' in req.session:
+        user=User.objects.get(username=req.session['user'])
+        image=Images.objects.get(pk=pid)
+        data=Saved.objects.get(image=image,user=user)
+        data.delete()
+        return redirect(req.META.get('HTTP_REFERER'))
+    else:
+        return redirect(u_login) 
+
+
+
+
+def view_upldr(req,pid):
+    user =User.objects.get(pk=pid)
+
+    profile = Profile.objects.get(user=user)
+    uploaded_images = Your_uplds.objects.filter(user=user)
+    images = [upload.Images for upload in uploaded_images]
+    return render(req, 'user/view_upldr.html', {'user': user,'profile': profile,'images': images})

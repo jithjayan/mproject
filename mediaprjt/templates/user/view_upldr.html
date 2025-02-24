@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user.username }}'s Profile</title>
+    <style>
+        /* General Reset */
+        body, h2, h3, p, img {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .user-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .user-info h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .user-info img {
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .user-info p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        .user-info strong {
+            font-size: 1.4rem;
+            color: #222;
+        }
+
+        .user-info em {
+            font-size: 1rem;
+            color: #777;
+        }
+
+        .uploaded-images h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .image-container {
+            column-count: 4; /* Number of columns in the grid */
+            column-gap: 15px; /* Gap between columns */
+            padding: 20px;
+        }
+
+        .image-item {
+            break-inside: avoid; /* Avoid breaking images inside columns */
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: center;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .image-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .image-item p {
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .image-item p:nth-child(3) {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .empty {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #aaa;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- User Info Section -->
+        <div class="user-info">
+            <h2>Profile</h2>
+            <img src="{{ profile.profile_picture.url }}" alt="{{ user.username }}'s Profile Picture" class="img-thumbnail" style="width: 120px; height: 120px;">
+            <p><strong>{{ user.first_name }} {{ user.last_name }}</strong></p>
+            <p><em>{{ profile.bio }}</em></p>
+        </div>
+
+        <!-- Uploaded Images Section -->
+        <div class="uploaded-images">
+            <h3>Uploaded Images:</h3>
+            {% for image in images %}
+            <a href="../viewpic/{{ image.pk }}">
+            <div class="image-container">
+                
+                    <div class="image-item">
+                        <img src="{{ image.img.url }}" alt="{{ image.title }}" class="img-thumbnail">
+                        <p>{{ image.title }}</p>
+                    </div>
+                {% empty %}
+                    <p class="empty">No images uploaded yet.</p>
+                {% endfor %}
+            </div>
+        </div>
+      </a>
+    </div>
+
+</body>
+
+</html>
