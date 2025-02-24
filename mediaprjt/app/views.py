@@ -232,8 +232,8 @@ def a_logout(req):
 # ----------------------------user-------------------
 def user_home(req):
     data=Images.objects.all()[:3]
-
-    return render(req,'user/user_home.html',{'data':data})
+    data2=Category.objects.all()[::1]
+    return render(req,'user/user_home.html',{'data':data,'data2':data2})
 
 def user_prfl(req):
     if 'user' in req.session:
@@ -282,7 +282,8 @@ def viewpic(req,pid):
 def images_by_category(req,pid):
     category = Category.objects.get(pk=pid)
     images = Images.objects.filter(tag=category)
-    return render(req, 'user/images_by_category.html', {'category': category, 'images': images})
+    data=Category.objects.all()
+    return render(req, 'user/images_by_category.html', {'category': category, 'images': images,'data':data})
 
 
 def add_image(req):
@@ -410,3 +411,21 @@ def view_upldr(req,pid):
     uploaded_images = Your_uplds.objects.filter(user=user)
     images = [upload.Images for upload in uploaded_images]
     return render(req, 'user/view_upldr.html', {'user': user,'profile': profile,'images': images})
+
+def saved_images(req):
+    if 'user' in req.session:
+        user=User.objects.get(username=req.session['user'])
+        save=Saved.objects.filter(user=user)
+        return render(req,'user/saved_images.html',{'save':save})
+    else:
+        return redirect(u_login)
+    
+def remove_saved(req,pid):
+    if 'user' in req.session:
+        user=User.objects.get(username=req.session['user'])
+        image=Images.objects.get(pk=pid)
+        data=Saved.objects.get(image=image,user=user)
+        data.delete()
+        return redirect(req.META.get('HTTP_REFERER'))
+    else:
+        return redirect(u_login)

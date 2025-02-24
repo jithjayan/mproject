@@ -11,11 +11,13 @@
     {% if images %}
         <div class="image-gallery">
             {% for image in images %}
+            <a href="../viewpic/{{image.pk}}" target="_blank" style="text-decoration: none; color: black;">
                 <div class="image-card">
                     <h3>{{ image.title }}</h3>
                     <img src="{{ image.img.url }}" alt="{{ image.title }}" style="max-width: 300px; max-height: 300px;">
                     <p>{{ image.disp }}</p>
                 </div>
+            </a>
             {% endfor %}
         </div>
     {% else %}

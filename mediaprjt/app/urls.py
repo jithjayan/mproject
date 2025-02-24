@@ -39,4 +39,7 @@ urlpatterns=[
     path('view_upldr/<pid>',views.view_upldr),
     path('save/<pid>',views.save),
     path('unsave/<pid>',views.unsave),
+    path('saved_images',views.saved_images),
+    path('remove_saved/<pid>',views.remove_saved),
+
 ]
