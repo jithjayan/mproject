@@ -231,7 +231,7 @@ def a_logout(req):
     return redirect(user_home) 
 # ----------------------------user-------------------
 def user_home(req):
-    data=Images.objects.all()[:3]
+    data=Images.objects.all()[:4]
     data2=Category.objects.all()[::1]
     return render(req,'user/user_home.html',{'data':data,'data2':data2})
 
@@ -265,7 +265,9 @@ def u_logout(req):
 
 def viewall(req):
     data=Images.objects.all()
-    return render(req,'user/viewall.html',{'data':data})
+    # data=Images.objects.all()[:3]
+    data2=Category.objects.all()[::1]
+    return render(req,'user/viewall.html',{'data':data,'data2':data2})
 
 
 def viewpic(req,pid):
@@ -374,6 +376,7 @@ def edit_prfl(req):
 
 def search(req):
     query = req.GET.get('query', '').strip()  
+    
     if query:
         images = Images.objects.filter( Q(title__icontains=query)|Q(tags__icontains=query))
     else:

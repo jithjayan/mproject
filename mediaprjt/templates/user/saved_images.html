@@ -26,6 +26,92 @@
     .revbtn:hover{
         background-color: #f0e6a1;
     }
+    /* Image Container */
+.image-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+    justify-items: center; /* Center the items */
+}
+
+/* Image Item */
+.image-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Image Hover Effect */
+.image-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Image */
+.image-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
+    transition: transform 0.3s ease;
+}
+
+/* Image Hover Effect on Image */
+.image-item:hover img {
+    transform: scale(1.1); /* Slightly enlarge the image when hovered */
+}
+
+/* REMOVE Button */
+.revbtn {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 8px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.revbtn:hover {
+    background-color: #c0392b; /* Darker shade when hovered */
+}
+
+/* Empty Text */
+p {
+    text-align: center;
+    color: #aaa;
+    font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .image-container {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns for large tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .image-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .image-container {
+        grid-template-columns: 1fr; /* Single column for mobile */
+    }
+
+    .image-item img {
+        height: 150px; /* Smaller image size on mobile */
+    }
+}
+
  </style>
 </head>
 <body>
@@ -58,15 +144,21 @@
       </nav>
       <!-- ----------------------------navend------------------ -->
 
-
       <div class="image-container">
         {% for saved in save %}
         <div class="image-item">
-          <a href="../viewpic/{{saved.image.pk}}"><img src="{{ saved.image.img.url }}" alt="{{ saved.image.title }}"></a>
-            <a href="./remove_saved/{{saved.image.pk}}" class="revbtn">REMOVE</a>
+            <a href="../viewpic/{{ saved.image.pk }}">
+                <img src="{{ saved.image.img.url }}" alt="{{ saved.image.title }}">
+            </a>
+            <a href="./remove_saved/{{ saved.image.pk }}" class="revbtn">REMOVE</a>
         </div>
+        {% empty %}
+        <p>No images</p>
         {% endfor %}
     </div>
+    
+    
+
 
 
 </body>

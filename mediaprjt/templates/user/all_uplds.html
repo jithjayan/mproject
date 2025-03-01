@@ -55,7 +55,7 @@
       <div class="image-container">
         {% for image in uploads %}
         <div class="image-item">
-            <a href="../user_pic/{{ image.pk }}"><img src="{{ image.Images.img.url }}" alt="{{ image.title }}"></a>
+            <a href=""><img src="{{ image.Images.img.url }}" alt="{{ image.title }}"></a>
             
             <a class="rmv_btn" href="../delete_img/{{image.pk}}"> Remove </a>
         
